@@ -1,4 +1,4 @@
-# Boot up github shell access for Windows WSL.
+# Boot up github shell access for Windows WSL/Ubuntu.
 
 #!/bin/bash
 
