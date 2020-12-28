@@ -7,7 +7,7 @@ Well now, you can have this, do that for you! 🎊🎊🎊
 ## Set up
 
 1. Either download or clone this repo
-2. Edit `boot.sh` and change the location on line #5 to the path where your github private key is located.
+2. Run `boot.sh` with location of ssh private key as argument
 3. Copy the path to the `boot.sh` file by
    1. `cd boot-github-shell-win`
    2. Copy output of `pwd`
@@ -19,4 +19,4 @@ Well now, you can have this, do that for you! 🎊🎊🎊
 
 ## Options
 
-You may opt to print details around the execution by calling the script with the `-v` flag like so: `bash boot.sh -v`
+You may opt to print details around the execution by calling the script with additional flag `-v` like so: `bash boot.sh <private-key-location> -v`
