@@ -1,30 +1,37 @@
+#!/bin/bash
 # Boot up github shell access for Windows WSL/Ubuntu.
 
-#!/bin/bash
+if [ "$#" -lt 1 ]
+then
+echo  "Please insert at least one argument"
+exit
+fi
 
-private_key_location=~/.ssh/github_rsa # Change this location to where your file is located.
+myArray=( "$@" )
+private_key_location=${myArray[0]} 
+verbose=${myArray[1]}
 
-verbose=$1
+if [ ! -e $private_key_location ]; then
+  echo "key $private_key_location not found"
+  exit
+fi
 
 echo 'Starting...'
 
-if [ "$1" = "-v" ]; then
+if [ "$verbose" = "-v" ]; then
   echo 'Booting up ssh-agent...'
 fi
 
-eval `ssh-agent -s`
-# ssh_agent_running=$(ssh-agent -s)
+ssh_agent_running=$(ssh-agent -s)
 
-if [ "$1" = "-v" ]; then
+if [ "$verbose" = "-v" ]; then
 	echo 'ssh-agent started with output:' $ssh_agent_running
   echo 'Adding private key to ssh-agent...'
 fi
 
 ssh_add_result=$(ssh-add $private_key_location)
 
-if [ "$1" = "-v" ]; then
-	echo 'ssh-agent started with output:' $ssh_agent_running
-  echo 'Adding private key to ssh-agent...'
+if [ "$verbose" = "-v" ]; then
   echo 'Command result: '$ssh_add_result
 fi
 
